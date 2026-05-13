@@ -1,0 +1,34 @@
+name: Solax T58 Battery Monitor
+description: Passively sniffs Solax T58 battery communication via Waveshare ETH-RS485 (transparent TCP) and publishes to MQTT.
+version: "2.0.0"
+slug: solax_battery
+init: false
+arch:
+  - aarch64
+  - amd64
+
+options:
+  tcp_host: "192.168.X.X"   # IP adresa Waveshare převodníku
+  tcp_port: 502                # TCP port dle nastavení Waveshare
+  slave_count: 4
+  modules_per_battery: 2
+  publish_interval: 10         # max. interval publikování do MQTT [s]
+  mqtt_host: "192.168.X.X"
+  mqtt_port: 1883
+  mqtt_user: "user"
+  mqtt_password: "password"
+  mqtt_base_topic: "solax/t58"
+  discovery_prefix: "homeassistant"
+
+schema:
+  tcp_host: str
+  tcp_port: int
+  slave_count: int
+  modules_per_battery: int
+  publish_interval: int
+  mqtt_host: str
+  mqtt_port: int
+  mqtt_user: str
+  mqtt_password: str
+  mqtt_base_topic: str
+  discovery_prefix: str
