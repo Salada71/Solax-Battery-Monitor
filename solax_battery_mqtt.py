@@ -80,7 +80,9 @@ def registers_to_data(regs: list[int]) -> dict | None:
     data: dict = {}
     data["pack_voltage"] = round(pack_v, 2)
     data["soc"]          = round((regs[REG_SOC] & 0xFF) * 100 / 250)
-    data["current"]      = round(_s16(regs[REG_CURRENT]) / 100, 2)
+    # Otáčíme znaménko proudu: BMS reportuje discharge jako kladné,
+    # ale konvence v HA je discharge = záporné, charge = kladné.
+    data["current"]      = round(-_s16(regs[REG_CURRENT]) / 100, 2)
     data["temp_min"]     = round(_s16(regs[REG_TEMP_MIN]) / 100, 1)
     data["temp_max"]     = round(_s16(regs[REG_TEMP_MAX]) / 100, 1)
     data["capacity"]     = round(regs[REG_CAPACITY] / 10, 1)

@@ -7,7 +7,7 @@ Spuštění: python test_sniff.py
 import socket
 import time
 
-HOST = "192.168.X.X"
+HOST = "192.168.85.198"
 PORT = 502    # TCP port dle nastavení Waveshare
 TIMEOUT = 10  # sekund čekání na první data
 
